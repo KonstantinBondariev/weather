@@ -35,11 +35,17 @@ export class ChartComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.setCanvas();
-    this.drawChart();
+    setTimeout(() => {
+      this.setCanvas();
+      this.drawChart();
+      console.log(this.yValues);
+    }, 1000); ///////!!!!!!!!!!!!!!!!!!!
   }
 
   defineAxisValues(margin = 20): void {
+    const maxValue = Math.max(...this.data);
+    const minValue = Math.min(...this.data);
+    const range = maxValue - minValue;
     this.xValues = this.data.map(
       (value, index) =>
         index * ((this.width - margin * 2) / (this.data.length - 1)) + margin
@@ -47,33 +53,34 @@ export class ChartComponent implements AfterViewInit {
     this.yValues = this.data.map(
       (value, index) =>
         this.height -
-        (value / Math.max(...this.data)) * (this.height - margin) -
-        0.5 * margin
+        ((value - minValue) / range) * (this.height - margin * 2) -
+        margin
     );
   }
 
   setChartProperties(
     lineColor: string = 'green',
-    lineWidth: number = 1,
+    lineWidth: number = 2,
     fontFamily: string = 'Arial',
-    fontSize: string = '14px'
+    fontSize: string = '10px'
   ): void {
     if (this.ctx) {
       this.ctx.strokeStyle = lineColor;
       this.ctx.lineWidth = lineWidth;
       this.ctx.font = `${fontSize} ${fontFamily}`;
+      // this.ctx.lineCap = 'round';
     }
   }
 
   drawChart(): void {
     if (this.ctx) {
-      this.defineAxisValues(50);
+      this.defineAxisValues(20);
       this.setChartProperties();
 
       this.ctx.beginPath();
       this.ctx.moveTo(this.xValues[0], this.yValues[0]);
       // Draw circle at each point
-      this.ctx.arc(this.xValues[0], this.yValues[0], 2, 0, 2 * Math.PI);
+      this.ctx.fillRect(this.xValues[0] - 3, this.yValues[0] - 3, 6, 6);
       this.ctx.fillText(
         `${this.data[0].toFixed(1)}`,
         this.xValues[0] + 5,
@@ -84,7 +91,8 @@ export class ChartComponent implements AfterViewInit {
         this.ctx.lineTo(this.xValues[i], this.yValues[i]);
 
         // Draw circle at each point
-        this.ctx.arc(this.xValues[i], this.yValues[i], 2, 0, 2 * Math.PI);
+        // this.ctx.arc(this.xValues[i], this.yValues[i], 2, 0, 2 * Math.PI);
+        this.ctx.fillRect(this.xValues[i] - 3, this.yValues[i] - 3, 6, 6);
 
         // Add label to each point
         this.ctx.fillText(

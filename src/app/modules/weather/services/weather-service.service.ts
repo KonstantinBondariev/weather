@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeolocationService } from 'src/app/services/geolocation-service.service';
+import { WeatherFiveDaysData } from 'src/app/types/weather-five-days-data';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class WeatherService {
         .getLocation()
         .then((res) => {
           const url = `${this.NOW_API_URL}?lat=${res.coords.latitude}&lon=${res.coords.longitude}&appid=${this.API_KEY}`;
-          this.http.get(url).subscribe(
+          this.http.get<any>(url).subscribe(
             (data) => {
               observer.next(data);
               observer.complete();
@@ -36,13 +37,13 @@ export class WeatherService {
         .catch((error) => observer.error(error));
     });
   }
-  get4DaysWeather(): Observable<any> {
+  get5DaysWeather(): Observable<WeatherFiveDaysData> {
     return new Observable((observer) => {
       this.geolocationService
         .getLocation()
         .then((res) => {
           const url = `${this.FIVE_DAYS_API_URL}?lat=${res.coords.latitude}&lon=${res.coords.longitude}&appid=${this.API_KEY}`;
-          this.http.get(url).subscribe(
+          this.http.get<WeatherFiveDaysData>(url).subscribe(
             (data) => {
               observer.next(data);
               observer.complete();
