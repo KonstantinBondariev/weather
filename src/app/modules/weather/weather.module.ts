@@ -7,10 +7,17 @@ import { WeatherRoutingModule } from './weather-routing.module';
 import { WeatherComponent } from './weather.component';
 import { WeatherTabsComponent } from './components/weather-tabs/weather-tabs.component';
 import { ChartsModule } from '../charts/charts.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [WeatherComponent, WeatherTabsComponent],
-  imports: [CommonModule, WeatherRoutingModule, MatTabsModule, ChartsModule],
+  imports: [
+    CommonModule,
+    WeatherRoutingModule,
+    MatTabsModule,
+    ChartsModule,
+    HttpClientModule,
+  ],
   exports: [],
 })
 export class WeatherModule {}
