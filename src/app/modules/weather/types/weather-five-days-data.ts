@@ -1,10 +1,10 @@
-import { WeatherDataItem } from './weather-data-item';
+import { WeatherFiveDaysDataItem } from './weather-five-day-data-item';
 
 export interface WeatherFiveDaysData {
   cod: string;
   message: number;
   cnt: number;
-  list: WeatherDataItem[];
+  list: WeatherFiveDaysDataItem[];
   city: {
     id: number;
     name: string;

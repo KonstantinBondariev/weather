@@ -16,12 +16,10 @@ export class WeatherFiveDayComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.geolocation
-      .getLocation()
-      .then((res) => console.log(res.coords.latitude, res.coords.longitude));
-    this.weatherService
-      .getNowWeather()
-      .subscribe({ next: (res) => console.log(res) });
+    this.getData();
+  }
+
+  getData(): void {
     this.weatherService.get5DaysWeather().subscribe({
       next: (res) => {
         res.list.forEach((data) => {

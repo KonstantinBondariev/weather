@@ -9,9 +9,11 @@ import { WeatherTabsComponent } from './components/weather-tabs/weather-tabs.com
 import { ChartsModule } from '../charts/charts.module';
 import { HttpClientModule } from '@angular/common/http';
 import { WeatherFiveDayComponent } from './components/weather-five-day/weather-five-day.component';
+import { ComponentsComponent } from './components/components.component';
+import { WeatherNowComponent } from './components/weather-now/weather-now.component';
 
 @NgModule({
-  declarations: [WeatherComponent, WeatherTabsComponent, WeatherFiveDayComponent],
+  declarations: [WeatherComponent, WeatherTabsComponent, WeatherFiveDayComponent, ComponentsComponent, WeatherNowComponent],
   imports: [
     CommonModule,
     WeatherRoutingModule,

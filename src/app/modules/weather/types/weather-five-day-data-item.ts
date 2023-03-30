@@ -1,4 +1,4 @@
-export interface WeatherDataItem {
+export interface WeatherFiveDaysDataItem {
   dt: number;
   main: {
     temp: number;
