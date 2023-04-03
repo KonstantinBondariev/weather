@@ -1,11 +1,20 @@
-<p>weather-now works!</p>
-<!-- {{data.weather|json}}<br> -->
-<!-- 
-{{data.name|json}}<br>
-{{data.coord|json}}<br>
+<mat-card *ngIf="data" class="card">
+  <mat-card-header>
 
-{{data.clouds|json}}<br>
-{{data.main | json}}<br>
-{{data | json}}<br> -->
+    <mat-card-title>Weather in {{data.name}}</mat-card-title>
+    <mat-card-subtitle>{{data.dt * 1000 | date}}</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <mat-card-content>
+    <p>Temperature: {{data.main.temp -273..15}}</p>
+    <p>Fells like: {{data.main.feels_like -273..15}}</p>
+    <p>Weather: {{data.weather[0].main}}</p>
+    <img src='https://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png' alt="{{data.weather[0].icon}}">
 
-<!-- <img src='https://openweathermap.org/img/wn/{{data.weather[0].icon}}@2x.png' alt="{{data.weather[0].icon}}"> -->
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

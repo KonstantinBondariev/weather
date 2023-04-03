@@ -11,6 +11,7 @@ import { WeatherFiveDaysData } from '../../types/weather-five-days-data';
 export class WeatherFiveDayComponent implements OnInit {
   temperature: number[] = [];
   dateLabels: string[] = [];
+  data!: WeatherFiveDaysData;
 
   constructor(
     private weatherService: WeatherService,
@@ -24,6 +25,7 @@ export class WeatherFiveDayComponent implements OnInit {
   getData(): void {
     this.weatherService.get5DaysWeather().subscribe({
       next: (data) => {
+        this.data = data;
         this.setTemperature(data);
         this.setDateLabels(data);
       },

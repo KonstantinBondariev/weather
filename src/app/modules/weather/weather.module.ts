@@ -10,6 +10,7 @@ import { ChartsModule } from '../charts/charts.module';
 import { HttpClientModule } from '@angular/common/http';
 import { WeatherFiveDayComponent } from './components/weather-five-day/weather-five-day.component';
 import { WeatherNowComponent } from './components/weather-now/weather-now.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { WeatherNowComponent } from './components/weather-now/weather-now.compon
     MatTabsModule,
     ChartsModule,
     HttpClientModule,
+    MatCardModule,
   ],
   exports: [],
 })

@@ -1,4 +1,8 @@
-<div *ngIf="showComponent" class="chart-container">
-  <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="lineChartLegend">
-  </canvas>
-</div>
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="showComponent" class="chart-container">
+      <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="lineChartLegend">
+      </canvas>
+    </div>
+  </mat-card-content>
+</mat-card>
