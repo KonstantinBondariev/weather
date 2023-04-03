@@ -14,6 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ChartsModule } from './modules/charts/charts.module';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -30,6 +31,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatListModule,
     MatGridListModule,
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

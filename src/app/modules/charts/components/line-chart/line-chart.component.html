@@ -1,0 +1,5 @@
+<div *ngIf="showComponent" class="chart-container">
+  <canvas baseChart [type]="'line'" [data]="lineChartData" [options]="lineChartOptions" [legend]="lineChartLegend">
+  </canvas>
+</div>
+<p>dddd{{lineChartData.datasets[0].data}}</p>
