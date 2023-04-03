@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { GeolocationService } from 'src/app/services/geolocation-service.service';
 import { WeatherService } from '../../services/weather-service.service';
+import { WeatherFiveDaysData } from '../../types/weather-five-days-data';
 
 @Component({
   selector: 'app-weather-five-day',
@@ -8,8 +9,8 @@ import { WeatherService } from '../../services/weather-service.service';
   styleUrls: ['./weather-five-day.component.scss'],
 })
 export class WeatherFiveDayComponent implements OnInit {
-  temps: number[] = [];
-  labels: string[] = [];
+  temperature: number[] = [];
+  dateLabels: string[] = [];
 
   constructor(
     private weatherService: WeatherService,
@@ -17,25 +18,33 @@ export class WeatherFiveDayComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.generateLabels();
     this.getData();
-  }
-
-  generateLabels(): void {
-    let h = 0;
-    for (let i = 0; i < 40; i++) {
-      this.labels.push(h + 'h');
-      h += 3;
-    }
   }
 
   getData(): void {
     this.weatherService.get5DaysWeather().subscribe({
-      next: (res) => {
-        res.list.forEach((data) => {
-          this.temps.push(Math.floor(data.main.temp - 273.15));
-        });
+      next: (data) => {
+        this.setTemperature(data);
+        this.setDateLabels(data);
       },
+    });
+  }
+  setTemperature(data: WeatherFiveDaysData): void {
+    data.list.forEach((res) => {
+      this.temperature.push(Math.floor(res.main.temp - 273.15));
+    });
+  }
+
+  setDateLabels(data: WeatherFiveDaysData): void {
+    data.list.forEach((res) => {
+      const date = new Date(res.dt_txt);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+
+      const dateString = `${day}-${month} ${hours}:${minutes}`;
+      this.dateLabels.push(dateString);
     });
   }
 }

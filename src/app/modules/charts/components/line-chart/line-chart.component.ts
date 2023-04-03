@@ -15,6 +15,7 @@ import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 export class LineChartComponent implements OnInit, OnChanges {
   @Input() data: number[] = [];
   @Input() labels: string[] = [];
+  @Input() label: string = '';
 
   showComponent: boolean = false;
 
@@ -25,7 +26,7 @@ export class LineChartComponent implements OnInit, OnChanges {
     datasets: [
       {
         data: this.data,
-        label: 'Series A',
+        label: this.label,
         fill: true,
         tension: 0.5,
         borderColor: 'black',
@@ -48,5 +49,6 @@ export class LineChartComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.lineChartData.labels = this.labels;
     this.lineChartData.datasets[0].data = this.data;
+    this.lineChartData.datasets[0].label = this.label;
   }
 }
