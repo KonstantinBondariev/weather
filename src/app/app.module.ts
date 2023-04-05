@@ -17,6 +17,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 
 import { ChartsModule } from './modules/charts/charts.module';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -35,6 +36,7 @@ import { ChartsModule } from './modules/charts/charts.module';
     MatGridListModule,
     MatCardModule,
     ChartsModule,
+    CarouselModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

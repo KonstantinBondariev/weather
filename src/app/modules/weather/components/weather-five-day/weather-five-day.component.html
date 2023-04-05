@@ -12,39 +12,31 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Temperature: {{item.main.temp -273..15}}</p>
-          <p>Fells like: {{item.main.feels_like -273..15}}</p>
+          <p>Temperature: {{(item.main.temp -273..15).toFixed(1)}}</p>
+          <p>Fells like: {{(item.main.feels_like -273..15).toFixed(1)}}</p>
           <p>Weather: {{item.weather[0].main}}</p>
-
-
         </mat-card-content>
-
       </mat-card>
     </div>
   </div>
 
-
-  <mat-tab-group>
-    <mat-tab label="Now">
-      <app-line-chart [data]="temperature.slice(0,10)" [labels]="dateLabels.slice(0,10)" [label]="'Temperature, °C'">
+  <carousel>
+    <slide>
+      <app-line-chart [data]="temperature.temp.slice(0,10)" [labels]="dateLabels.slice(0,10)"
+        [label]="'Temperature, °C'">
       </app-line-chart>
-
-    </mat-tab>
-    <mat-tab label="Weather for 5 days">
-      <app-line-chart [data]="temperature.slice(10,20)" [labels]="dateLabels.slice(10,20)" [label]="'Temperature, °C'">
+    </slide>
+    <slide>
+      <app-line-chart [data]="temperature.temp.slice(10,20)" [labels]="dateLabels.slice(10,20)"
+        [label]="'Temperature, °C'">
       </app-line-chart>
-
-    </mat-tab>
-    <mat-tab label="Third">
-      <app-line-chart [data]="temperature.slice(20,30)" [labels]="dateLabels.slice(20,30)" [label]="'Temperature, °C'">
+    </slide>
+    <slide>
+      <app-line-chart [data]="temperature.temp.slice(30)" [labels]="dateLabels.slice(30)" [label]="'Temperature, °C'">
       </app-line-chart>
+    </slide>
+  </carousel>
 
-    </mat-tab>
-    <mat-tab label="Third">
-      <app-line-chart [data]="temperature.slice(30)" [labels]="dateLabels.slice(30)" [label]="'Temperature, °C'">
-      </app-line-chart>
 
-    </mat-tab>
-  </mat-tab-group>
 
-</mat-card>
+</mat-card> -->

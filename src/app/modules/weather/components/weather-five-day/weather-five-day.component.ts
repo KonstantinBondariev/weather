@@ -1,15 +1,20 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { GeolocationService } from 'src/app/services/geolocation-service.service';
 import { WeatherService } from '../../services/weather-service.service';
+import { Temperature } from '../../types/temperature';
 import { WeatherFiveDaysData } from '../../types/weather-five-days-data';
-
 @Component({
   selector: 'app-weather-five-day',
   templateUrl: './weather-five-day.component.html',
   styleUrls: ['./weather-five-day.component.scss'],
 })
 export class WeatherFiveDayComponent implements OnInit {
-  temperature: number[] = [];
+  temperature: Temperature = {
+    temp: [],
+    feelsLike: [],
+    tempMax: [],
+    tempMin: [],
+  };
   dateLabels: string[] = [];
   data!: WeatherFiveDaysData;
 
@@ -33,7 +38,12 @@ export class WeatherFiveDayComponent implements OnInit {
   }
   setTemperature(data: WeatherFiveDaysData): void {
     data.list.forEach((res) => {
-      this.temperature.push(Math.floor(res.main.temp - 273.15));
+      this.temperature.temp.push(+(res.main.temp - 273.15).toFixed(1));
+      this.temperature.feelsLike.push(
+        +(res.main.feels_like - 273.15).toFixed(1)
+      );
+      this.temperature.tempMax.push(+(res.main.temp_max - 273.15).toFixed(1));
+      this.temperature.tempMin.push(+(res.main.temp_min - 273.15).toFixed(1));
     });
   }
 

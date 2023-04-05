@@ -36,10 +36,37 @@ export class LineChartComponent implements OnInit, OnChanges {
   };
   public lineChartOptions: ChartOptions<'line'> = {
     responsive: true,
+    scales: {
+      y: {
+        grace: '5%',
+      },
+    },
   };
   public lineChartLegend = true;
 
   constructor() {}
+
+  calculateAverage(data: number[]): number {
+    let sum = 0;
+    data.forEach((item) => (sum += item));
+    return sum / data.length;
+  }
+
+  setColor(data: number[]): string {
+    if (this.calculateAverage(data) < -15) {
+      return 'rgba(145, 21, 194,0.3)';
+    } else if (this.calculateAverage(data) < -10) {
+      return 'rgba(59, 21, 194,0.3)';
+    } else if (this.calculateAverage(data) < 0) {
+      return 'rgba(48, 147, 240,0.3)';
+    } else if (this.calculateAverage(data) < 8) {
+      return 'rgba(48, 240, 214,0.3)';
+    } else if (this.calculateAverage(data) < 18) {
+      return 'rgba(48, 240, 51,0.3)';
+    } else if (this.calculateAverage(data) < 25) {
+      return 'rgba(240, 237, 48,0.3)';
+    } else return 'rgba(247, 97, 22,0.3)';
+  }
 
   ngOnInit() {
     setTimeout(() => {
@@ -50,5 +77,6 @@ export class LineChartComponent implements OnInit, OnChanges {
     this.lineChartData.labels = this.labels;
     this.lineChartData.datasets[0].data = this.data;
     this.lineChartData.datasets[0].label = this.label;
+    this.lineChartData.datasets[0].backgroundColor = this.setColor(this.data);
   }
 }

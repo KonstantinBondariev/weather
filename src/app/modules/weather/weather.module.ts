@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WeatherFiveDayComponent } from './components/weather-five-day/weather-five-day.component';
 import { WeatherNowComponent } from './components/weather-now/weather-now.component';
 import { MatCardModule } from '@angular/material/card';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
     ChartsModule,
     HttpClientModule,
     MatCardModule,
+    CarouselModule.forRoot(),
   ],
   exports: [],
 })

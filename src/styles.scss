@@ -9,3 +9,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: burlywood;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
